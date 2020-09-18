@@ -19,6 +19,8 @@ void swap(int *a, int *b) {
 }
 /*
     Ý tưởng: sắp xếp phần tử nhỏ nhất đưa lên đầu
+    - chia mảng thành 2 mảng con: mảng đã được sắp xếp và mảng chưa được sắp xếp
+    - cứ mỗi lần lặp thì phần tử nhỏ nhất ở mảng con chưa được sắp xếp sẽ được đưa lên đầu mảng đã được sắp xếp
 */
 void selectionSort(int arr[], int n) {
     for( int i = 0; i< n-1; i++) {
@@ -40,5 +42,5 @@ int main()
     cout<<"\nSau khi sắp xếp"<<endl;
     selectionSort(a, lenght);
     Xuatmang(a,lenght);
-    cout<<endl;
+    return 0;
 }
