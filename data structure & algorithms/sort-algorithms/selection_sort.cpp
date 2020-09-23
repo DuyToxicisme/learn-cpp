@@ -1,27 +1,22 @@
 #include <iostream>
-#include <string>
-// Selection Sort - O(n^2) - sắp xếp chọn
-// Sắp xếp tăng dần các phần tử
+#include <cstring>
 
 using namespace std;
 
-// Xuất mảng
+// In ra quá trình các bước sắp xếp
+
 void Xuatmang(int arr[], int n) {
     for (int i = 0; i<n; i++) {
         cout<<arr[i]<<'\t';
     }
 }
-// Đổi chỗ 2 phần tử
+
 void swap(int *a, int *b) {
     int temp = *a;
     *a=*b;
     *b=temp;
 }
-/*
-    Ý tưởng: sắp xếp phần tử nhỏ nhất đưa lên đầu
-    - chia mảng thành 2 mảng con: mảng đã được sắp xếp và mảng chưa được sắp xếp
-    - cứ mỗi lần lặp thì phần tử nhỏ nhất ở mảng con chưa được sắp xếp sẽ được đưa lên đầu mảng đã được sắp xếp
-*/
+
 void selectionSort(int arr[], int n) {
     for( int i = 0; i< n-1; i++) {
         int min_index = i;
@@ -31,16 +26,19 @@ void selectionSort(int arr[], int n) {
             }
         }
         swap( &arr[i], &arr[min_index]);
+
+        Xuatmang(arr, n);
+        cout<< endl;
     }
 }
 
 int main()
 {
-    int a[] = {4,7,2,0,10,3,41,100,56};
+    int a[] = {14,4,6,5,2,3,7,9,13,15};
     int lenght = sizeof(a) / sizeof(int);
-    Xuatmang(a,lenght);
-    cout<<"\nSau khi sắp xếp"<<endl;
+    // Xuatmang(a,lenght);
+    cout<<"\n\Quá trình sắp xếp"<<endl;
     selectionSort(a, lenght);
-    Xuatmang(a,lenght);
+    // Xuatmang(a,lenght);
     return 0;
 }
