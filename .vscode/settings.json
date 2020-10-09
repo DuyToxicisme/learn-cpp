@@ -1,6 +1,6 @@
 {
     // Cấu hình visual code ----------------------------------------------------
-    "editor.fontSize": 15,
+    "editor.fontSize": 18,
     "editor.fontWeight": "normal",
     "editor.cursorBlinking": "expand",
     "editor.wordWrap": "on",
