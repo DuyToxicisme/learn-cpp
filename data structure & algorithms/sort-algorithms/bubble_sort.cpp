@@ -25,17 +25,19 @@ void swap(int *a, int *b) {
 
 void bubbleSort(int arr[], int &n) {
     for (int i = 0; i< n-1; i++) {
-        for (int j=i+1; j<n; j++) {
+        for (int j = n-1; j > i; j--) {
             if(arr[i] > arr[j]) {
                 swap(&arr[i], &arr[j]);
             }
         }
+        Xuatmang(arr, n);
+        cout << endl;
     }
 }
 
 int main()
 {
-    int a[] = {4,7,2,0,10,3,41,100,56};
+    int a[] = {12,2,8,5,1,6,4,15};
     int lenght = sizeof(a) / sizeof(int);
     Xuatmang(a,lenght);
     cout<<"\nSau khi sắp xếp"<<endl;
