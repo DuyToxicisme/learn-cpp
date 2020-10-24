@@ -81,7 +81,6 @@ int main()
     Xuat_file();
     fclose(Ofile);
     P_array();
-
     return 0;
 
 }

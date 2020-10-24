@@ -1,6 +1,13 @@
 #include <iostream>
 using namespace std;
 
+void swap(int* a, int* b)
+{
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
 void nhapMang(int a[], int n)
 {
     for (int i = 0; i < n; i++)
@@ -15,19 +22,17 @@ void xuatMang(int a[], int n)
     for (int i = 0; i < n; i++)
         cout << a[i] << "\t";
 }
-
 void heapify(int arr[], int n, int root)
 {
     int largest = root;
+
     int leftNode = 2*root + 1;
     int rightNode = 2*root + 2;
-
     if (leftNode < n && arr[leftNode] > arr[largest])
         largest = leftNode;
 
     if (rightNode < n && arr[rightNode] > arr[largest])
         largest = rightNode;
-
     if (largest != root)
     {
         swap(arr[root], arr[largest]);
@@ -46,6 +51,7 @@ void heapSort(int arr[], int n)
     }
 }
 
+
 int main()
 {
     int n;
@@ -55,8 +61,7 @@ int main()
     nhapMang(arr, n);
     cout << "Mảng trước khi sắp xếp: \n";
     xuatMang(arr, n);
-    cout << "Sau khi sắp xếp :";
     cout << "\nCác bước của giải thuật : \n";
-    heapSort(arr, n);
+    heapSort(arr,n);
     xuatMang(arr, n);
 }

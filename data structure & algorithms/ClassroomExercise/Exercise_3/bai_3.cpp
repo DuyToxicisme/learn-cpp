@@ -29,10 +29,12 @@ void bubbleSort(int arr[], int n)
 {
     for (int i = 0; i < n - 1; i++)
     {
-        for (int j = 0; j < n - i - 1; j++)
+        for (int j = 0; j < n - i -1; j++)
         {
-            if (arr[j] > arr[j + 1])
-                swap(&arr[j], &arr[j + 1]);
+            if (arr[j] > arr[j+1])
+            {
+                swap(&arr[j], &arr[j+1]);
+            }
         }
         xuatMang(arr, n);
         cout << endl;
@@ -50,5 +52,12 @@ int main()
     xuatMang(arr, n);
     cout << "\nCác bước của giải thuật : \n";
     bubbleSort(arr, n);
+    cout << "Mảng sau khi sắp xếp : \n";
     xuatMang(arr, n);
 }
+
+/*
+    10 1 4 9 2 8 0 6
+    1 10 4 9 2 0 8 6
+    1 4 10 9 0 2 8 6
+*/
