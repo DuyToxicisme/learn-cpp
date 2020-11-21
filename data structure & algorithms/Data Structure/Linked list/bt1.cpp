@@ -1,121 +1,107 @@
 #include <iostream>
 using namespace std;
 
-struct Node
-{
+struct node {
     int data;
-    Node *next;
+    struct node *next;
 };
+typedef struct node NODE;
 
-struct dslk
-{
-    Node *first = NULL;
-    Node *last = NULL;
+struct list {
+    NODE *first;
+    NODE *last;
 };
-
-Node *createNode(int x)
-{
-    Node *p = new Node;
-    if (p == NULL)
-    {
-        return NULL;
-    }
-    p->data = x;
-    p->next = NULL;
-    return p;
-}
-void init(dslk &l)
-{
-    l.first = NULL;
+typedef struct list LIST;
+// khởi tạo danh sách
+void Create(LIST &l) {
+    l.first= NULL;
     l.last = NULL;
 }
-Node *addElement(Node *p, int x) {
-    Node *tmp = createNode(x);
-    p -> next = tmp;
-    return tmp;
+// Hàm khởi tạo 1 node
+NODE *CreateNode(int x) {
+    NODE *p = new NODE;
+    if (p == NULL) {
+        cout << "Danh sach trong: ";
+        return NULL;
+    }
+    p -> data = x;
+    p -> next = NULL;
+    return p;
 }
-bool isEmpty(const dslk &L)
-{
-    if (L.first == NULL)
-        return true;
-    else
-        return false;
+// Thêm vào đầu
+void InsertFirst(LIST &l, NODE *p) {
+    if (l.first == NULL) {
+        l.first = l.last = p;
+    } else {
+        p -> next = l.first;
+        l.first = p;
+    }
 }
-int size(const dslk &L)
-{
+// Thêm vào cuối
+void InsertLast(LIST &l, NODE *p) {
+    if (l.first == NULL) {
+        l.first = l.last = p;
+    } else {
+        l.last -> next = p;
+        l.last = p;
+    }
+}
+// In danh sách các phần tử
+void InforList(LIST l) {
+    for (NODE *k = l.first; k != NULL; k = k -> next) {
+        cout << k -> data << " ";
+    }
+}
+// hiện thị node thứ n
+// NODE displayNode(LIST l, int index) {
+//     for (NODE *k = l.first; k != NULL; k = k -> next) {
+//         if ( index == 0) {
+//             return k;
+//         }
+//         index--;
+//     }
+//     return NULL;
+// }
+
+// Đếm số lượng node của danh sách
+int sizeList(LIST l) {
     int size = 0;
-    for (Node *p = L.first; p != NULL; p = p->next)
+    for (NODE *k = l.first; k != NULL; k = k -> next) {
         size++;
+    }
     return size;
 }
-void infoList(dslk L)
-{
-    if (isEmpty(L))
-    {
-        printf("Danh sach khong co phan tu nao");
-    }
-    else
-    {
-        cout << ("danh sach phan tu: ");
-        for (Node *p = L.first; p != NULL; p = p->next)
-        {
-            cout << p->data << "\t";
-        }
-    }
-}
-void insertHead(dslk &L, Node *p)
-{
-    if (isEmpty(L))
-    {
-        L.first = L.last = p;
-    }
-    else
-    {
-        p->next = L.first;
-        L.first = p;
-    }
-}
-void insertLast(dslk &L, Node *p) {
-    if (isEmpty(L))
-    {
-        L.first = L.last = p;
-    }
-    else
-    {
-        L.last->next = p;
-        L.last = p;
-    }
-}
-void insertElements(int n, int arr[]) {
-    for (int i =0; i< n; i++) {
-        cout << "arr[" << i << "] = ";
-        cin >> arr[i];
-        Node *elements = createNode(arr[i]);
-    }
-}
-
 int main()
 {
-    dslk list;
-    int f_element, l_element;
-    cout << "phan tu dau = " ; cin >> f_element;
-    Node *newfirstNode = createNode(f_element);
-    insertHead(list, newfirstNode);
-    cout << "phan tu cuoi = "; cin >> l_element;
-    Node *newlastNode = createNode(l_element);
-    insertLast(list, newlastNode);
-    int spt;
-    cout << "nhap so phan tu can them: ";
-    cin >> spt;
-    int *arr = new int[10];
-    for (int i =0; i< spt; i++) {
-        cout << "arr[" << i << "] = ";
-        cin >> arr[i];
-        Node *cc = createNode(arr[i]);
-        insertHead(list, cc);
+    LIST l;
+    Create(l);
+    int nfirst, nlast;
+    cout << "nhap so luong node can them vao dau: ";
+    cin >> nfirst;
+    for (int i = 0; i < nfirst; i++) {
+        int x;
+        cout << "nhap gia tri so nguyen: ";
+        cin >> x;
+        NODE *p = CreateNode(x);
+        InsertFirst(l, p);
     }
+    cout << "nhap so luong node can them vao cuoi: ";
+    cin >> nlast;
+    for (int i = 0; i < nlast; i++) {
+        int x;
+        cout << "nhap gia tri so nguyen: ";
+        cin >> x;
+        NODE *p = CreateNode(x);
+        InsertLast(l, p);
+    }
+    cout << "DANH SACH LIEN KET:";
+    InforList(l);
+    // int index;
+    // cout << "Ban muon hien thi node thu bao nhieu: ";
+    // cin >> index;
+    // displayNode(l, index);
+    cout << "So luong phan tu cua danh sach: " << sizeList(l);
 
-    
-    //in danh sách các phần tử
-    infoList(list);
+    cout << endl;
+    return 0;
 }
