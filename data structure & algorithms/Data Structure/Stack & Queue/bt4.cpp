@@ -1,94 +1,69 @@
-#include <iostream>
-#include <stack>
-
+// CPP Program to convert postfix to prefix
+#include <bits/stdc++.h>
 using namespace std;
 
-bool isOperator(char c)
+// function to check if character is operator or not
+bool isOperator(char x)
 {
-    return (!isalpha(c) && !isdigit(c));
+    switch (x) {
+    case '+':
+    case '-':
+    case '/':
+    case '*':
+        return true;
+    }
+    return false;
 }
 
-int getPriority(char C)
+// Convert postfix to Prefix expression
+string postToPre(string post_exp)
 {
-    if (C == '-' || C == '+')
-        return 1;
-    else if (C == '*' || C == '/')
-        return 2;
-    else if (C == '^')
-        return 3;
-    return 0;
-}
+    stack<string> s;
 
-string infixToPostfix(string infix)
-{
-    infix = '(' + infix + ')';
-    int l = infix.size();
-    stack<char> char_stack;
-    string output;
+    // length of expression
+    int length = post_exp.size();
 
-    for (int i = 0; i < l; i++) {
+    // reading from right to left
+    for (int i = 0; i < length; i++) {
 
-        if (isalpha(infix[i]) || isdigit(infix[i]))
-            output += infix[i];
+        // check if symbol is operator
+        if (isOperator(post_exp[i])) {
 
-        else if (infix[i] == '(')
-            char_stack.push('(');
+            // pop two operands from stack
+            string op1 = s.top();
+            s.pop();
+            string op2 = s.top();
+            s.pop();
 
-        else if (infix[i] == ')') {
+            // concat the operands and operator
+            string temp = post_exp[i] + op2 + op1;
 
-            while (char_stack.top() != '(') {
-                output += char_stack.top();
-                char_stack.pop();
-            }
-
-            char_stack.pop();
+            // Push string temp back to stack
+            s.push(temp);
         }
 
+        // if symbol is an operand
         else {
 
-            if (isOperator(char_stack.top())) {
-                while (getPriority(infix[i])
-                   <= getPriority(char_stack.top())) {
-                    output += char_stack.top();
-                    char_stack.pop();
-                }
-
-                char_stack.push(infix[i]);
-            }
-        }
-    }
-    return output;
-}
-
-string infixToPrefix(string infix)
-{
-
-    int l = infix.size();
-
-    reverse(infix.begin(), infix.end());
-
-    for (int i = 0; i < l; i++) {
-
-        if (infix[i] == '(') {
-            infix[i] = ')';
-            i++;
-        }
-        else if (infix[i] == ')') {
-            infix[i] = '(';
-            i++;
+            // push the operand to the stack
+            s.push(string(1, post_exp[i]));
         }
     }
 
-    string prefix = infixToPostfix(infix);
-
-    reverse(prefix.begin(), prefix.end());
-
-    return prefix;
+    string ans = "";
+    while (!s.empty()) {
+        ans += s.top();
+        s.pop();
+    }
+    return ans;
 }
 
+// Driver Code
 int main()
 {
-    string s = ("(a-b/c)*(a/k-l)");
-    cout << infixToPrefix(s) << endl;
+    string post_exp = "2+(4+3)*6+7-4";
+
+    // Function call
+    cout << "Prefix : " << postToPre(post_exp);
     return 0;
 }
