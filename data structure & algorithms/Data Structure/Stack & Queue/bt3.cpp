@@ -18,6 +18,7 @@ int uuTien(char c) { // trả về mức độ ưu tiên của các toán tử
         return 3;
     }
 }
+
 void hauto() {
     stack<char> s;
     int i = 0;
