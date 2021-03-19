@@ -4,50 +4,66 @@
 using namespace std;
 // Chương trình chuyển biểu thức trung tố về hậu tố
 
-int uuTien(char c) { // trả về mức độ ưu tiên của các toán tử
-    if ( c == '(') {
+int uuTien(char c)
+{ // trả về mức độ ưu tiên của các toán tử
+    if (c == '(')
+    {
         return 0;
     }
-    if ( c == '+' || c == '-') {
+    if (c == '+' || c == '-')
+    {
         return 1;
     }
-    if ( c == '*' || c == '/' || c == '%') {
+    if (c == '*' || c == '/' || c == '%')
+    {
         return 2;
     }
-    if ( c == '^') {
+    if (c == '^')
+    {
         return 3;
     }
 }
 
-void hauto() {
+void hauto()
+{
     stack<char> s;
     int i = 0;
     string str, str1 = ""; // str : lưu trữ biểu thức đầu vào, str1 : lưu trữ toán hạng
-    // cout << "Nhap bieu thuc: ";
+    cout << "Nhap bieu thuc: ";
     // cin >> str;
-    getline(cin , str); // Đọc từng dòng từ bàn phím
-    while( i < str.length() ) {
+    getline(cin, str); // Đọc từng dòng từ bàn phím
+    while (i < str.length())
+    {
         char c = str.at(i); // ký tự tại vị trí thứ i của chuỗi str
-        if (c != ' ') {
-            if (c - '0' >= 0 && c - '0' <= 9 || isalpha(c)) {
+        if (c != ' ')
+        {
+            if (c - '0' >= 0 && c - '0' <= 9 || isalpha(c))
+            {
                 str1 += c;
             } //
-            else {
+            else
+            {
                 cout << str1 << " ";
                 str1 = "";
-                if ( c == ' ') {
+                if (c == ' ')
+                {
                     s.push(c);
                 }
-                else{
-                    if( c == ')') {
-                        while ( s.top() != '(') {
+                else
+                {
+                    if (c == ')')
+                    {
+                        while (s.top() != '(')
+                        {
                             cout << s.top();
                             s.pop();
                         }
                         s.pop();
                     }
-                    else{
-                        while ( !s.empty() && uuTien(c) <= uuTien(s.top())) {
+                    else
+                    {
+                        while (!s.empty() && uuTien(c) <= uuTien(s.top()))
+                        {
                             cout << s.top();
                             s.pop();
                         }
@@ -58,10 +74,12 @@ void hauto() {
         }
         i++;
     }
-    if ( str1 != "") {
+    if (str1 != "")
+    {
         cout << str1 << " ";
     }
-    while ( !s.empty() ) {
+    while (!s.empty())
+    {
         cout << s.top();
         s.pop();
     }
@@ -69,6 +87,7 @@ void hauto() {
 
 int main()
 {
+
     hauto();
     return 0;
 }
