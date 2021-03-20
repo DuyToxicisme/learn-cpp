@@ -112,6 +112,7 @@
         "xlocmes": "cpp",
         "xlocmon": "cpp",
         "xloctime": "cpp",
-        "concepts": "cpp"
+        "concepts": "cpp",
+        "socket.h": "c"
     }
 }
