@@ -3,9 +3,15 @@ using namespace std;
 
 class circle
 {
-public:
-    const float pi = 3.14;
+private:
     float r;
+public:     
+    circle() {
+        r = 0;
+    }
+    circle( float d) {
+        r = d;
+    }
 };
 
 int main()
