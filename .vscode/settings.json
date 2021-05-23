@@ -1,19 +1,20 @@
 {
     // Cấu hình visual code ----------------------------------------------------
-    "editor.fontSize": 14,
+    "editor.fontSize": 15,
     "editor.fontWeight": "normal",
     "editor.cursorBlinking": "expand",
     "editor.wordWrap": "on",
-    "editor.rulers": [100],
+    "editor.rulers": [
+        100
+    ],
     "files.trimTrailingWhitespace": true,
     "files.insertFinalNewline": true,
     "files.trimFinalNewlines": true,
     "editor.tabCompletion": "on",
     "editor.renderWhitespace": "selection",
     "terminal.integrated.shell.windows": "C:\\Windows\\System32\\cmd.exe",
-    "editor.fontFamily": "'Victor Mono', Monospace",  // 'Fira Code'
+    "editor.fontFamily": "'Victor Mono', Monospace", // 'Fira Code'
     "editor.fontLigatures": true,
-
     // -------------------------------------------------------------------------
     "files.exclude": {
         "*.exe": true,
